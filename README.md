@@ -1,6 +1,6 @@
 # SQL Expr
 
-A TypeScript library for building serializable SQL (PostgreSQL) filters with a safe user-generated approach. Utilizes a filter schema to ensure that only permitted filters are generated.
+A TypeScript library for building type-safe, serializable PostgreSQL filters with schema validation.
 
 ## Features
 
@@ -39,6 +39,36 @@ if (result.isOk()) {
 
   console.log(result.value.values);
   // ["john@example.com"]
+}
+```
+
+### JSON Operations Example
+
+```typescript
+import { factory, buildSql } from 'sql-expr';
+
+// Query nested JSON field
+const filter = factory.equals(
+  factory.column("user.profile.name"),
+  factory.string("John")
+);
+
+const result = buildSql(filter, {
+  columns: {
+    "user.profile.name": {
+      table: "users",
+      column: "profile",
+      jsonOperations: [{ type: "->>", key: "name" }]
+    }
+  }
+});
+
+if (result.isOk()) {
+  console.log(result.value.sql);
+  // ("users"."profile" ->> 'name') = $1
+
+  console.log(result.value.values);
+  // ["John"]
 }
 ```
 
