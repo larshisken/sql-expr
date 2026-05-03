@@ -1,0 +1,77 @@
+{
+  "name": "sql-expr",
+  "version": "0.1.0",
+  "description": "A TypeScript library for building serializable SQL (PostgreSQL) filters with a safe user-generated approach. Utilizes a filter schema to ensure that only permitted filters are generated.",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "exports": {
+    ".": {
+      "import": "./dist/index.js",
+      "require": "./dist/index.js",
+      "types": "./dist/index.d.ts"
+    }
+  },
+  "scripts": {
+    "build": "tsc",
+    "test": "vitest",
+    "test:coverage": "vitest run --coverage",
+    "test:watch": "vitest --watch",
+    "lint": "eslint src --ext .ts",
+    "lint:fix": "eslint src --ext .ts --fix",
+    "typecheck": "tsc --noEmit",
+    "dev": "tsc --watch",
+    "prepublishOnly": "npm run build"
+  },
+  "keywords": [
+    "sql",
+    "query",
+    "filter",
+    "where",
+    "builder",
+    "user-generated",
+    "serializable",
+    "safe",
+    "sql-injection-safe",
+    "parameterized",
+    "postgres",
+    "mysql",
+    "sqlite",
+    "slonik",
+    "knex",
+    "prisma",
+    "end-user-filters",
+    "dynamic-queries"
+  ],
+  "author": {
+    "name": "Lars Hisken",
+    "email": "larshisken@proton.me"
+  },
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/username/sql-expr.git"
+  },
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE"
+  ],
+  "dependencies": {
+    "neverthrow": "^6.2.2",
+    "zod": "^3.22.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20.0.0",
+    "@typescript-eslint/eslint-plugin": "^6.0.0",
+    "@typescript-eslint/parser": "^6.0.0",
+    "@vitest/coverage-v8": "^1.0.0",
+    "eslint": "^8.0.0",
+    "typescript": "^5.0.0",
+    "vitest": "^1.0.0"
+  },
+  "peerDependenciesMeta": {
+    "slonik": {
+      "optional": true
+    }
+  }
+}
